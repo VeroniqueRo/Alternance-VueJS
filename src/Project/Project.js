@@ -1,6 +1,7 @@
 export default {
   name: 'project',
-  components: {},
+  components: {
+  },
   props: [],
   data () {
     return {
