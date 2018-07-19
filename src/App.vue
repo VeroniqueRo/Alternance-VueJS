@@ -1,60 +1,71 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+  <div class="container-fluid" id="app">
+
+    <b-jumbotron header="Mes projets" lead="Avec Vue JS" >
+      <h1>{{ msg }}</h1>
+      {{ projets }}
+    </b-jumbotron>
+    <div>
+      <b-card title="Card Title"
+              img-src="https://picsum.photos/600/300/?image=25"
+              img-alt="Image"
+              img-top
+              tag="article"
+              style="max-width: 20rem;"
+              class="mb-2">
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the bulk of the card's content.
+        </p>
+        <b-button href="#" variant="primary">Go somewhere</b-button>
+      </b-card>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+    export default {
+        name: 'app',
+        data () {
+            return {
+                msg: 'Interface de gestion de projet',
+                projets: [
+                {
+                      "_id": "5b3e3da861f2d927949fa8da",
+                      "isActive": false,
+                      "picture": "http://placehold.it/32x32",
+                      "name": "PUSHCART",
+                      "creation": "Tue Feb 25 1975 21:31:07 GMT+0100 (Central European Standard Time)"
+                }
+                ],
+            }
+        }
     }
-  }
-}
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 
-h1, h2 {
-  font-weight: normal;
-}
+  @import "~bootstrap/scss/bootstrap.scss";
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+  h1, h2 {
+    font-weight: normal;
+  }
 
-a {
-  color: #42b983;
-}
+  li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+
+  a {
+    color: #42b983;
+  }
+
 </style>
