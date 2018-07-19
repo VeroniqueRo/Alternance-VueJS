@@ -1,6 +1,7 @@
 <template>
     <b-container class="fluid">
         <h1>liste depuis le component ProjetsList</h1>
+        <project></project>
         <b-container class="row" align-v="right">
             <b-card v-for="project in projectsList"
                     :title="project.name"
@@ -19,15 +20,21 @@
 </template>
 
 <script>
+    // Chargement du component
+    import Project from './Project'
+
     export default {
         name: "ProjectsList",
+        components: {
+            'project': Project
+        },
         data () {
             return {
                 projectsList: [
                     {
                         "_id": "5b3e3da861f2d927949fa8da",
                         "isActive": true,
-                        "picture": "http://placehold.it/32x32",
+                        "picture": "https://picsum.photos/600/300/?image=25",
                         "name": "PUSHCART",
                         "creation": "Tue Feb 25 1975 21:31:07 GMT+0100 (Central European Standard Time)"
                     },
