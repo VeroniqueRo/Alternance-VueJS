@@ -1,45 +1,48 @@
 <template>
   <div class="container-fluid" id="app">
-
     <b-jumbotron header="Mes projets" lead="Avec Vue JS" >
-      <h1>{{ msg }}</h1>
-      {{ projets }}
+      <h1>Interface de gestion</h1>
     </b-jumbotron>
     <div>
-      <b-card title="Card Title"
-              img-src="https://picsum.photos/600/300/?image=25"
-              img-alt="Image"
-              img-top
-              tag="article"
+      <b-card :title="name"
               style="max-width: 20rem;"
               class="mb-2">
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the bulk of the card's content.
-        </p>
-        <b-button href="#" variant="primary">Go somewhere</b-button>
+        <div>
+          <img :src="picture">
+        </div>
+        <div>
+          <b-form-checkbox id="checkbox1"
+                           v-model="status"
+                           value="accepted"
+                           unchecked-value="not_accepted">
+            Statut du projet
+          </b-form-checkbox>
+        </div>
       </b-card>
     </div>
+
   </div>
 </template>
 
 <script>
+    // Chargement du component
+
     export default {
         name: 'app',
+        components: {
+
+        },
         data () {
             return {
-                msg: 'Interface de gestion de projet',
-                projets: [
-                {
-                      "_id": "5b3e3da861f2d927949fa8da",
-                      "isActive": false,
-                      "picture": "http://placehold.it/32x32",
-                      "name": "PUSHCART",
-                      "creation": "Tue Feb 25 1975 21:31:07 GMT+0100 (Central European Standard Time)"
-                }
-                ],
+                "id": "5b3e3da861f2d927949fa8da",
+                "isActive": false,
+                "picture": "http://placehold.it/32x32",
+                "name": "PUSHCART",
+                "creation": "Tue Feb 25 1975 21:31:07 GMT+0100 (Central European Standard Time)"
+            }
             }
         }
-    }
+
 </script>
 
 <style lang="scss">
@@ -59,13 +62,5 @@
     font-weight: normal;
   }
 
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-
-  a {
-    color: #42b983;
-  }
 
 </style>
