@@ -1,10 +1,11 @@
 <template>
   <div class="container-fluid" id="app">
     <b-jumbotron header="Mes projets" lead="Avec Vue JS" >
-      <h1>Interface de gestion</h1>
+      <h1>Interface de gestion de projet</h1>
     </b-jumbotron>
     <div>
       <b-card :title="name"
+              :class="{ active: isActive }"
               style="max-width: 20rem;"
               class="mb-2">
         <div>
@@ -35,7 +36,7 @@
         data () {
             return {
                 "id": "5b3e3da861f2d927949fa8da",
-                "isActive": false,
+                "isActive": true,
                 "picture": "http://placehold.it/32x32",
                 "name": "PUSHCART",
                 "creation": "Tue Feb 25 1975 21:31:07 GMT+0100 (Central European Standard Time)"
@@ -62,5 +63,9 @@
     font-weight: normal;
   }
 
+  .active {
+    background-color: rosybrown;
+    color: white;
+  }
 
 </style>
