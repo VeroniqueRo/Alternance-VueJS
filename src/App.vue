@@ -3,14 +3,14 @@
     <b-jumbotron header="Mes projets" lead="Avec Vue JS" >
       <h1>Interface de gestion de projet</h1>
     </b-jumbotron>
+    <projects></projects>
     <b-container class="row" align-v="right">
       <b-card v-for="project in projectsList"
               :title="project.name"
               :class="{ active: project.isActive }"
-              class="col-sm-3">
-        <b-container>
-          <img :src="project.picture">
-        </b-container>
+              :img-src="project.picture"
+              img-top
+              class="col-sm-4">
         <div>
           <b-form-checkbox type="checkbox" v-model="project.isActive">
             Statut du projet
@@ -23,11 +23,12 @@
 
 <script>
     // Chargement du component
+    import ProjectsList from './ProjectsList'
 
     export default {
         name: 'app',
         components: {
-
+            'projects': ProjectsList
         },
         data () {
             return {
@@ -248,8 +249,8 @@
   }
 
   .card {
-    margin: 10px;
-    /*max-width: 20rem;*/
+    margin: 0.5rem;
+    max-width: 20rem;
   }
 
   .active {
