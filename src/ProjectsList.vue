@@ -1,7 +1,7 @@
 <template>
         <tr>
             <th>{{nom}}</th>
-            <td><b-button>Voir détail</b-button></td>
+            <td><router-link to="/project"  class="btn btn-ms btn-info">Voir détail</router-link></td>
         </tr>
 </template>
 <script>

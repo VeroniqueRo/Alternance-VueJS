@@ -4,19 +4,19 @@
       <h1>Interface de gestion de projets</h1>
     </b-jumbotron>
       <table class="table table-bordered table-hover">
-        <thead class="table-dark">
+        <thead class="thead-dark">
           <tr>
             <th scope="col">Nom</th>
             <th scope="col">Détail du projet</th>
           </tr>
         </thead>
         <tbody>
-          <projects v-for="monprojet in allProjects"
+          <projectslist v-for="monprojet in allProjects"
                     :key="monprojet._id"
                     :nom="monprojet.name"
                     :image="monprojet.picture"
                     :date="monprojet.creation">
-          </projects>
+          </projectslist>
         </tbody>
       </table>
   </b-container>
@@ -29,7 +29,7 @@
     export default {
         name: 'app',
         components: {
-            'projects': ProjectsList
+            'projectslist': ProjectsList
         },
         data () {
             return {
