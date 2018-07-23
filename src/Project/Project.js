@@ -2,7 +2,7 @@ export default {
   name: 'project',
   components: {
   },
-  props: [],
+  props: ['nom', 'isActive', 'image', 'date'],
   data () {
     return {
 

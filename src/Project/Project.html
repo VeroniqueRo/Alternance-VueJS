@@ -1,5 +1,18 @@
 
 <section class="project">
-  <p>Cliquez sur un projet pour en voir le détail</p>
+  <b-container class="row" align-v="right">
+    <b-card
+      :title="nom"
+      :class="{ active: isActive }"
+      :img-src="image"
+      img-top
+      class="col-sm-4">
+      <div>
+        <b-form-checkbox type="checkbox" v-model="isActive">
+        Statut du projet
+        </b-form-checkbox>
+      </div>
+    </b-card>
+  </b-container>
 </section>
 
