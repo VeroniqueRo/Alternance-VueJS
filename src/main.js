@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
+import Icon from 'vue-awesome/icons'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import Project from "./Project";
@@ -7,6 +8,7 @@ import ProjectsList from './ProjectsList';
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
+Vue.component('icon', Icon);
 
 const router = new VueRouter({
     routes: [

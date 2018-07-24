@@ -9,7 +9,7 @@
         <tbody v-for="monprojet in allProjects">
             <tr>
                 <td>{{monprojet.name}}</td>
-                <td><router-link :to="{name:'detail', params:{monprojet}}" class="btn btn-lg btn-info">Voir détail</router-link></td>
+                <td><router-link :to="{name:'detail', params:{monprojet}}" class="btn btn-md btn-info">Voir détail</router-link></td>
             </tr>
         </tbody>
     </table>
@@ -217,7 +217,8 @@
 <style scoped>
 
     .table {
-        background-color:white;
+        background-color: white;
+        margin-top: 2em;
     }
 
 

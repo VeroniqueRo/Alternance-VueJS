@@ -1,20 +1,24 @@
 <template>
   <b-container class="fluid" id="app">
-    <b-jumbotron header="Mes projets" lead="Avec Vue JS" >
+    <b-jumbotron>
+      <img class='image-titre' src="../images/idee_projet.png">
       <h1>Interface de gestion de projets</h1>
     </b-jumbotron>
+      <navbar></navbar>
       <router-view></router-view>
   </b-container>
 </template>
 
 <script>
     // Chargement du component
-    import ProjectsList from './ProjectsList'
+    import ProjectsList from './ProjectsList';
+    import Menu from './Menu'
 
     export default {
         name: 'app',
         components: {
-            'projectslist': ProjectsList
+            'projectslist': ProjectsList,
+            'navbar' : Menu
         },
     }
 
@@ -42,14 +46,9 @@
     vertical-align: middle;
   }
 
-  .card {
-    margin: 0.5rem;
-    max-width: 20rem;
-  }
-
-  .active {
-    background-color: #138496;
-    color: white;
+  .image-titre {
+    max-width: 35%;
+    height: auto;
   }
 
 </style>
