@@ -2,15 +2,17 @@ import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
-import Project from "./Project/Project";
+import Project from "./Project";
+import ProjectsList from './ProjectsList';
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 
 const router = new VueRouter({
     routes: [
-        { path: '/', component: App},
-        { path: '/project', component: Project, props: true},
+        // { path: '/', name:'accueil', component: App},
+        { path: '/', name:'liste', component: ProjectsList, props: true},
+        { path: '/project', name:'detail', component: Project, props: true},
     ]
 })
 

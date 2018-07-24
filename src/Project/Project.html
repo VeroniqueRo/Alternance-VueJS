@@ -1,18 +1,25 @@
 
 <section class="project">
-  <b-container class="row" align-v="right">
-    <b-card
-      :title="nom"
-      :class="{ active: isActive }"
-      :img-src="image"
-      img-top
-      class="col-sm-4">
-      <div>
-        <b-form-checkbox type="checkbox" v-model="isActive">
-        Statut du projet
-        </b-form-checkbox>
-      </div>
-    </b-card>
+  <b-container>
+    <b-row>
+      <b-col md="8" offset-md="4">
+        <b-card
+              :title="monprojet.name"
+              :class="{ active: monprojet.isActive }"
+              :img-src="monprojet.picture"
+              img-top
+              style="max-width: 20rem;"
+              class="mb-8">
+        <div>
+          <b-form-checkbox type="checkbox" v-model="monprojet.isActive">
+            <label v-if="monprojet.isActive">Projet actif</label>
+            <label v-else="!monprojet.isActive">Projet non actif</label>
+          </b-form-checkbox>
+        </div>
+      </b-card>
+      </b-col>
+    </b-row>
+
   </b-container>
 </section>
 
