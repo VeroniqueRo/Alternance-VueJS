@@ -2,13 +2,15 @@
     <table class="table table-bordered table-hover">
         <thead class="thead-light">
         <tr class="raw">
-            <th class="col-sm-5">Nom <b-form-input  prepend="@" v-model="search" placeholder="Rechercher un projet..."/></th>
-            <th>Détail du projet</th>
+            <th class="col-sm-5">Nom <i @click="sortByName" class='fa fa-caret-up'></i><i @click="sortByNameReverse" class='fa fa-caret-down'></i><b-form-input  prepend="@" v-model="search" placeholder="Rechercher un projet..."/></th>
+            <th>Date du projet <i @click="sortByDate" class='fa fa-caret-up'></i><i @click="sortByDateReverse" class='fa fa-caret-down'></i></th>
+            <th>Détails du projet</th>
         </tr>
         </thead>
         <tbody v-for="monprojet in listFiltered">
             <tr>
                 <td>{{monprojet.name}}</td>
+                <td>{{monprojet.createdAt}}</td>
                 <td><router-link :to="{name:'detail', params:{monprojet}}" class="btn btn-md btn-info">Voir détail</router-link></td>
             </tr>
         </tbody>
@@ -28,9 +30,38 @@
                 newTab.push(tab[i]);
             }
         }
-        console.log(newTab);
         return newTab;
     }
+
+    // Fonction de tri par ordre alphabétique
+    function sortName(tab) {
+
+        let result = tab;
+        for (let i = 0; i < result.length; i++) {
+
+            // Compare les éléments du tableau result
+            result.sort(function(nomA,nomB){
+                if (nomA.name < nomB.name) {
+                    return -1;
+                } else if (nomA.name > nomB.name) {
+                    return 1;
+                } else if (nomA.name === nomB.name) {
+                    return 0
+                }
+            });
+        }
+        return result;
+    }
+
+    // Trie les dates
+    function sortDate(tab) {
+        tab.sort(function (date1, date2) {
+            return new Date(date1.createdAt) - new Date(date2.createdAt);
+        })
+        return tab;
+    }
+
+
 
     export default {
         name: "ProjectsList",
@@ -38,10 +69,10 @@
             // 'project': Project,
         },
 
-        data () {
+        data() {
             return {
-                search:'',
-                allProjects:[],
+                search: '',
+                allProjects: [],
                 // allProjects: [
                 //     {
                 //         "_id": "5b3e3da861f2d927949fa8da",
@@ -230,7 +261,7 @@
         },
 
         computed: {
-            listFiltered: function() {
+            listFiltered: function () {
                 return research(this.allProjects, this.search.toUpperCase());
             }
         },
@@ -249,6 +280,33 @@
                     console.error(e);
                 });
             console.log("Réponse 3: Je poursuis mon programme");
+        },
+
+        methods: {
+
+            // sortByName:function(){
+            //     let bool = true;
+            //     if (bool) {
+            //         return sortNom(this.allProjects);
+            //     } else {
+            //         return sortNom(this.allProjects).reverse();
+            //     } bool =!bool;
+            // }
+            sortByName: function () {
+                return sortName(this.allProjects);
+            },
+
+            sortByNameReverse: function () {
+                return sortName(this.allProjects).reverse();
+            },
+
+            sortByDate: function () {
+                return sortDate(this.allProjects);
+            },
+
+            sortByDateReverse: function () {
+                return sortDate(this.allProjects).reverse();
+            },
         }
     }
 
