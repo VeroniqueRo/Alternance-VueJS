@@ -2,9 +2,9 @@
     <table class="table table-bordered table-hover">
         <thead class="thead-light">
         <tr class="raw">
-            <th class="col-sm-5">Nom <i @click="sortByName" class='fa fa-caret-up'></i><i @click="sortByNameReverse" class='fa fa-caret-down'></i><b-form-input  prepend="@" v-model="search" placeholder="Rechercher un projet..."/></th>
+            <th class="col-sm-5">Nom <i @click="sortByName" class='fa fa-sort'></i><b-form-input v-model="search" placeholder="Rechercher un projet..."/></th>
             <th>Date du projet <i @click="sortByDate" class='fa fa-caret-up'></i><i @click="sortByDateReverse" class='fa fa-caret-down'></i></th>
-            <th>Détails du projet</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody v-for="monprojet in listFiltered">
@@ -61,8 +61,6 @@
         return tab;
     }
 
-
-
     export default {
         name: "ProjectsList",
         components: {
@@ -73,6 +71,7 @@
             return {
                 search: '',
                 allProjects: [],
+                interrupteur: true,
                 // allProjects: [
                 //     {
                 //         "_id": "5b3e3da861f2d927949fa8da",
@@ -256,7 +255,6 @@
                 //         "name": "DIGIPRINT",
                 //         "creation": "Thu Dec 10 1981 23:31:45 GMT+0100 (Central European Standard Time)"
                 //     }]
-
             }
         },
 
@@ -284,20 +282,13 @@
 
         methods: {
 
-            // sortByName:function(){
-            //     let bool = true;
-            //     if (bool) {
-            //         return sortNom(this.allProjects);
-            //     } else {
-            //         return sortNom(this.allProjects).reverse();
-            //     } bool =!bool;
-            // }
-            sortByName: function () {
-                return sortName(this.allProjects);
-            },
-
-            sortByNameReverse: function () {
-                return sortName(this.allProjects).reverse();
+            sortByName:function(){
+                console.log(this.interrupteur);
+                if (this.interrupteur) {
+                    sortName(this.allProjects);
+                } else {
+                    sortName(this.allProjects).reverse();
+                } this.interrupteur=!this.interrupteur;
             },
 
             sortByDate: function () {
@@ -305,7 +296,7 @@
             },
 
             sortByDateReverse: function () {
-                return sortDate(this.allProjects).reverse();
+                sortDate(this.allProjects).reverse();
             },
         }
     }
