@@ -2,14 +2,16 @@
     <table class="table table-bordered table-hover">
         <thead class="thead-light">
         <tr class="raw">
-            <th class="col-sm-5">Nom <i @click="sortByName" class='fa fa-sort'></i><b-form-input v-model="search" placeholder="Rechercher un projet..."/></th>
-            <th>Date du projet <i @click="sortByDate" class='fa fa-caret-up'></i><i @click="sortByDateReverse" class='fa fa-caret-down'></i></th>
+            <th class="col-sm-5">Nom  <i @click="sortByProjectName" class='fa fa-sort'></i><b-form-input v-model="search1" placeholder="Rechercher un projet..."/></th>
+            <th class="col-sm-5">Auteur  <i @click="sortByName" class='fa fa-sort'></i><b-form-input v-model="search2" placeholder="Rechercher un auteur..."/></th>
+            <th>Date du projet <i @click="sortByDate" class='fa fa-sort'></i></th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody v-for="monprojet in listFiltered">
             <tr>
                 <td>{{monprojet.name}}</td>
+                <td>{{monprojet.creator.name}}</td>
                 <td>{{monprojet.createdAt}}</td>
                 <td><router-link :to="{name:'detail', params:{monprojet}}" class="btn btn-md btn-info">Voir détail</router-link></td>
             </tr>
@@ -20,8 +22,8 @@
     // Chargement du component
     import axios from 'axios'
 
-    // Fonction de filtrage sur le nom
-    function research(tab, val) {
+    // Fonction de filtrage sur le nom du projet
+    function researchProject(tab, val) {
 
         let newTab = [];
         // Compare la recherche avec le nom dans le tableau qu'elle soit en minuscule ou en majuscule
@@ -33,8 +35,41 @@
         return newTab;
     }
 
-    // Fonction de tri par ordre alphabétique
+    // Fonction de filtrage sur le nom de l'auteur
+    function researchAuthor(tab, val) {
+
+        let newTab = [];
+        // Compare la recherche avec le nom dans le tableau qu'elle soit en minuscule ou en majuscule
+        for (let i = 0; i < tab.length; i++) {
+            if (tab[i].creator.name.toUpperCase().startsWith(val)){
+                newTab.push(tab[i]);
+            }
+        }
+        return newTab;
+    }
+
+    // Fonction de tri Nom Auteur par ordre alphabétique
     function sortName(tab) {
+
+        let result = tab;
+        for (let i = 0; i < result.length; i++) {
+
+            // Compare les éléments du tableau result
+            result.sort(function(nomA,nomB){
+                if (nomA.creator.name < nomB.creator.name) {
+                    return -1;
+                } else if (nomA.creator.name > nomB.creator.name) {
+                    return 1;
+                } else if (nomA.creator.name === nomB.creator.name) {
+                    return 0
+                }
+            });
+        }
+        return result;
+    }
+
+    // Fonction de tri Projets par ordre alphabétique
+    function sortProjectName(tab) {
 
         let result = tab;
         for (let i = 0; i < result.length; i++) {
@@ -69,7 +104,8 @@
 
         data() {
             return {
-                search: '',
+                search1: '',
+                search2: '',
                 allProjects: [],
                 interrupteur: true,
                 // allProjects: [
@@ -259,8 +295,13 @@
         },
 
         computed: {
+
             listFiltered: function () {
-                return research(this.allProjects, this.search.toUpperCase());
+                if (this.search1.toUpperCase()) {
+                    return researchProject(this.allProjects, this.search1.toUpperCase());
+                } else {
+                    return researchAuthor(this.allProjects, this.search2.toUpperCase());
+                }
             }
         },
 
@@ -291,12 +332,22 @@
                 } this.interrupteur=!this.interrupteur;
             },
 
-            sortByDate: function () {
-                return sortDate(this.allProjects);
+            sortByProjectName:function(){
+                console.log(this.interrupteur);
+                if (this.interrupteur) {
+                    sortProjectName(this.allProjects);
+                } else {
+                    sortProjectName(this.allProjects).reverse();
+                } this.interrupteur=!this.interrupteur;
             },
 
-            sortByDateReverse: function () {
-                sortDate(this.allProjects).reverse();
+            sortByDate:function(){
+                console.log(this.interrupteur);
+                if (this.interrupteur) {
+                    sortDate(this.allProjects);
+                } else {
+                    sortDate(this.allProjects).reverse();
+                } this.interrupteur=!this.interrupteur;
             },
         }
     }

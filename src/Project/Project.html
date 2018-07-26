@@ -1,29 +1,27 @@
 
 <section class="project">
-  <b-container>
-      <b-row class="carteDetail">
+  <b-container fluid >
+      <b-row class="carteDetail" :class="{ active: monprojet.isActive }">
         <b-col  cols="4" align-self="center">
           <b-card
                   :title="monprojet.creator.name"
-                  :class="{ active: monprojet.isActive }"
                   :img-src="monprojet.creator.picture"
                   img-top
-                  style="max-width: 20rem;"
                   class="mb-10">
-            <b-form-checkbox type="checkbox" v-model="monprojet.isActive">
-              <label v-if="monprojet.isActive">Projet actif</label>
-              <label v-else="!monprojet.isActive">Projet non actif</label>
-            </b-form-checkbox>
           </b-card>
         </b-col>
         <b-col align-self="center">
           <h2>{{monprojet.name}}</h2><br>
           <p>{{monprojet.description}}</p>
+          <b-form-checkbox type="checkbox" v-model="monprojet.isActive">
+            <label v-if="monprojet.isActive">Projet actif</label>
+            <label v-else="!monprojet.isActive">Projet inactif</label>
+          </b-form-checkbox>
         </b-col>
       </b-row>
   </b-container>
-  <b-container fluid class="p-4 bg-dark">
-    <h3><u>Collaborateurs</u></h3>
+  <h2>Collaborateurs</h2>
+  <b-container fluid class="p-1 bg-dark">
     <b-row>
       <b-col v-for="collaborator in monprojet.collaborators">
         <h5 class="collaboratorName">{{collaborator.name}}</h5>

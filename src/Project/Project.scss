@@ -3,20 +3,32 @@
 }
 
 .carteDetail {
-  border: 2px solid #138496;
+  border: 2px solid #17a2b8;
+  padding: 1.5rem;
+}
+
+p {
+  text-align: justify;
+  padding: 1.5rem;
+}
+
+h2 {
+  padding-top: 1rem;
 }
 
 .card {
-  margin: 0.5rem;
-  max-width: 20rem;
-  background-color: #e9ecef
+  background-color: #e9ecef;
+  min-width: 10rem;
+  color: #17a2b8;
+  padding: 0,5rem;
 }
 
 .collaboratorName {
   color: #ffffff;
+  padding: 1rem;
 }
 
 .active {
-  background-color: #138496;
+  background-color: #17a2b8;
   color: white;
 }
