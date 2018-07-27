@@ -5,7 +5,7 @@
       <h1>Interface de gestion de projets</h1>
     </b-jumbotron>
       <navbar v-bind:search="search"></navbar>
-      <router-view></router-view>
+    <router-view></router-view>
   </b-container>
 </template>
 
@@ -18,12 +18,14 @@
         name: 'app',
         components: {
             'projectslist': ProjectsList,
-            'navbar' : Menu
+            'navbar' : Menu,
         },
+        props: [],
         data() {
-            search: ''
+            return {
+                search: ''
+            }
         },
-
     }
 
 </script>

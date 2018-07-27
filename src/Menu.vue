@@ -15,16 +15,17 @@
             <b-navbar-nav class="ml-auto">
                 <b-nav-form>
                     <form class="form-inline">
-                        <b-input-group>
-                            <b-input-group-prepend>
-                                <b-btn class="btn btn-warning disabled"><i class="fas fa-search"></i></b-btn>
-                            </b-input-group-prepend>
-                            <b-form-input v-model="search1" placeholder="Rechercher un projet..."/>
-                            <b-input-group-append>
-                                <b-btn :disabled="!search1" @click="search1 = ''">Clear</b-btn>
-                            </b-input-group-append>
-                        </b-input-group>
+                        <!--<b-input-group>-->
+                            <!--<b-input-group-prepend>-->
+                                <!--<b-btn class="btn btn-warning disabled"><i class="fas fa-search"></i></b-btn>-->
+                            <!--</b-input-group-prepend>-->
+                            <!--<b-form-input v-model="search1" placeholder="Rechercher un projet..."/>-->
+                            <!--<b-input-group-append>-->
+                                <!--<b-btn :disabled="!search1" @click="search1 = ''">Clear</b-btn>-->
+                            <!--</b-input-group-append>-->
+                        <!--</b-input-group>-->
                          <!--Button trigger modal-->
+                        <router-link :to="{name:'formulaire'}"><b-button size="md" class="mr-1">Nouveau projet</b-button></router-link>
                         <!--<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#nouveauProjet">-->
                             <!--Nouveau Projet-->
                         <!--</button>-->
@@ -50,5 +51,4 @@
 </script>
 
 <style scoped>
-
 </style>

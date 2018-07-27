@@ -1,5 +1,4 @@
 <template>
-
     <!--Table version bootstrap-vue-->
     <b-container fluid>
         <b-row>
@@ -26,8 +25,8 @@
         <template slot="name" slot-scope="row">{{row.item.name}}</template>
         <template slot="infos" slot-scope="row" md="8">
             <b-button-group>
-            <router-link :to="{name:'detail', params:{ monprojet: row.item } }"><b-button size="md" class="mr-1">Voir détail</b-button></router-link>
-            <b-button variant="danger" @click="deleteProject(row.item.id)"><i class="fas fa-trash-alt"></i></b-button></b-button>
+                <router-link :to="{name:'detail', params:{ monprojet: row.item } }"><b-button size="md" class="mr-1">Voir détail</b-button></router-link>
+                <b-button variant="danger" @click="deleteProject(row.item.id)"><i class="fas fa-trash-alt"></i></b-button></b-button>
             </b-button-group>
 
         </template>
@@ -59,7 +58,8 @@
     // Chargement du component
     import axios from 'axios'
     import VeroTable from "./VeroTable"
-    import Menu from "./Menu";
+    import Menu from "./Menu"
+    import FormulaireAjout from "./FormulaireAjout";
 
     // Fonction de filtrage sur le nom du projet
     function researchProject(tab, val) {
@@ -143,6 +143,7 @@
     export default {
         name: "ProjectsList",
         components: {
+            FormulaireAjout,
             VeroTable,
             Menu
         },
@@ -408,7 +409,7 @@
                     sortDate(this.allProjects).reverse();
                 } this.interrupteur=!this.interrupteur;
             },
-            
+
             getData:function() {
                 axios.get(`https://daily-standup-campus.herokuapp.com/api/projects?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMjNmODIzYTM5YjlmMDAxNGViNGJlNiIsImlhdCI6MTUzMTE0Mjg1MX0.K5e_nO1kl0sOOK8rvjYTiRkHPk2vBoGcSGY0Xh3zVQg`)
                     .then(response => {
@@ -427,7 +428,7 @@
                     .catch(e => {
                         console.error(e);
                     })
-            }
+            },
         }
     }
 

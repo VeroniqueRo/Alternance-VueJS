@@ -6,6 +6,8 @@ import App from './App.vue'
 import Project from "./Project";
 import ProjectsList from './ProjectsList';
 import VeroTable from './VeroTable';
+import FormulaireAjout from './FormulaireAjout';
+import Menu from './Menu';
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
@@ -17,6 +19,7 @@ const router = new VueRouter({
         { path: '/', name:'liste', component: ProjectsList, props: true},
         { path: '/project', name:'detail', component: Project, props: true},
         { path: '/table', name:'table', component: VeroTable, props: true},
+        { path: '/ajout', name:'formulaire', component: FormulaireAjout, props: true},
     ]
 })
 
