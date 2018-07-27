@@ -27,8 +27,9 @@
         <template slot="infos" slot-scope="row" md="8">
             <b-button-group>
             <router-link :to="{name:'detail', params:{ monprojet: row.item } }"><b-button size="md" class="mr-1">Voir détail</b-button></router-link>
-            <b-button variant="danger" @click="deleteProject"><i class="fas fa-trash-alt"></i></b-button></b-button>
+            <b-button variant="danger" @click="deleteProject(row.item.id)"><i class="fas fa-trash-alt"></i></b-button></b-button>
             </b-button-group>
+
         </template>
     </b-table>
     </b-container>
@@ -132,6 +133,10 @@
             return new Date(date1.createdAt) - new Date(date2.createdAt);
         })
         return tab;
+    }
+
+    function getData() {
+
     }
 
 
@@ -375,22 +380,10 @@
         created() {
 
             // Appel AXIOS pour récupérer les données de l'API
-            console.log("Réponse 1: Je lance ma promesse");
-            axios.get(`https://daily-standup-campus.herokuapp.com/api/projects?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMjNmODIzYTM5YjlmMDAxNGViNGJlNiIsImlhdCI6MTUzMTE0Mjg1MX0.K5e_nO1kl0sOOK8rvjYTiRkHPk2vBoGcSGY0Xh3zVQg`)
-                .then(response => {
-                    // console.log(response);
-                    console.log("Réponse 2: J'ai fini ma requête");
-                    this.allProjects = response.data // data étant le nom de l'API
-                })
-                .catch(e => {
-                    // this.error.push(e);
-                    console.error(e);
-                });
-            console.log("Réponse 3: Je poursuis mon programme");
+            this.getData();
         },
 
         methods: {
-
             sortByName:function(){
                 console.log(this.interrupteur);
                 if (this.interrupteur) {
@@ -399,7 +392,6 @@
                     sortName(this.allProjects).reverse();
                 } this.interrupteur=!this.interrupteur;
             },
-
             sortByProjectName:function(){
                 console.log(this.interrupteur);
                 if (this.interrupteur) {
@@ -408,7 +400,6 @@
                     sortProjectName(this.allProjects).reverse();
                 } this.interrupteur=!this.interrupteur;
             },
-
             sortByDate:function(){
                 console.log(this.interrupteur);
                 if (this.interrupteur) {
@@ -417,6 +408,26 @@
                     sortDate(this.allProjects).reverse();
                 } this.interrupteur=!this.interrupteur;
             },
+            
+            getData:function() {
+                axios.get(`https://daily-standup-campus.herokuapp.com/api/projects?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMjNmODIzYTM5YjlmMDAxNGViNGJlNiIsImlhdCI6MTUzMTE0Mjg1MX0.K5e_nO1kl0sOOK8rvjYTiRkHPk2vBoGcSGY0Xh3zVQg`)
+                    .then(response => {
+                        this.allProjects = response.data // data étant le nom de l'API
+                    })
+                    .catch(e => {
+                        console.error(e);
+                    })
+            },
+
+            deleteProject:function(id){
+                axios.delete("https://daily-standup-campus.herokuapp.com/api/projects/"+id+"?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMjNmODIzYTM5YjlmMDAxNGViNGJlNiIsImlhdCI6MTUzMTE0Mjg1MX0.K5e_nO1kl0sOOK8rvjYTiRkHPk2vBoGcSGY0Xh3zVQg")
+                    .then(() => {
+                        this.getData();
+                    })
+                    .catch(e => {
+                        console.error(e);
+                    })
+            }
         }
     }
 

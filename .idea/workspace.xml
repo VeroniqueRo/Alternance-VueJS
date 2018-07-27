@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="213c99b6-3f43-426c-b3e8-9cf4d4820ba5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ProjectsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,8 +28,8 @@
       <file leaf-file-name="ProjectsList.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ProjectsList.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="15" column="16" selection-start-line="4" selection-start-column="8" selection-end-line="15" selection-end-column="16" />
+            <state relative-caret-position="308">
+              <caret line="410" column="12" selection-start-line="410" selection-start-column="12" selection-end-line="410" selection-end-column="12" />
               <folding>
                 <element signature="e#2816#3142#0" />
                 <element signature="e#3233#3567#0" />
@@ -216,12 +213,12 @@
       <workItem from="1532443263001" duration="1948000" />
       <workItem from="1532503137396" duration="22728000" />
       <workItem from="1532589945700" duration="21609000" />
-      <workItem from="1532675455109" duration="5410000" />
+      <workItem from="1532675455109" duration="9314000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109799000" />
+    <option name="totallyTimeSpent" value="113703000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
@@ -255,7 +252,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -642,8 +639,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ProjectsList.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="15" column="16" selection-start-line="4" selection-start-column="8" selection-end-line="15" selection-end-column="16" />
+        <state relative-caret-position="308">
+          <caret line="410" column="12" selection-start-line="410" selection-start-column="12" selection-end-line="410" selection-end-column="12" />
           <folding>
             <element signature="e#2816#3142#0" />
             <element signature="e#3233#3567#0" />
