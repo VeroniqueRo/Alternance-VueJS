@@ -25,7 +25,7 @@
                             <!--</b-input-group-append>-->
                         <!--</b-input-group>-->
                          <!--Button trigger modal-->
-                        <router-link :to="{name:'formulaire'}"><b-button size="md" class="mr-1">Nouveau projet</b-button></router-link>
+                        <!--<router-link :to="{name:'formulaire'}" @ajout="getData"><b-button size="md" class="mr-1">Nouveau projet</b-button></router-link>-->
                         <!--<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#nouveauProjet">-->
                             <!--Nouveau Projet-->
                         <!--</button>-->

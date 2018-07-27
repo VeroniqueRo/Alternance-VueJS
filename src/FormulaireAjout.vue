@@ -21,7 +21,7 @@
                               placeholder="Description du nouveau projet">
                 </b-form-input>
             </b-form-group>
-            <router-link :to="{name:'liste'}"><b-button @click="addProject" type="submit" variant="info">Submit</b-button></router-link>
+            <b-button @click="addProject" type="submit" variant="info">Submit</b-button>
             <b-button type="reset" variant="danger">Reset</b-button>
             <router-link :to="{name:'liste'}"><b-button variant="warning">Annuler</b-button></router-link>
         </b-form>
@@ -51,6 +51,8 @@
                 axios.post("https://daily-standup-campus.herokuapp.com/api/projects?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMjNmODIzYTM5YjlmMDAxNGViNGJlNiIsImlhdCI6MTUzMTE0Mjg1MX0.K5e_nO1kl0sOOK8rvjYTiRkHPk2vBoGcSGY0Xh3zVQg",this.form)
             .then(response => {
                     console.log(response.data);
+                    this.$emit('ajout');
+                    this.$router.push({name:'liste'});
                 })
                     .catch(e => {
                         console.error(e);

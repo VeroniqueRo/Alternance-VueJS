@@ -2,16 +2,21 @@
     <!--Table version bootstrap-vue-->
     <b-container fluid>
         <b-row>
-            <b-col md="6" class="my-1">
-                <b-form-group horizontal label="Filter" class="mb-0">
+            <b-col md="8"  size="md" class="mb-5 mt-5">
+                <b-form-group horizontal label="Filtre">
                     <b-input-group>
                         <b-form-input v-model="search1" placeholder="Rechercher un projet..." />
                         <b-input-group-append>
                             <b-btn :disabled="!search1" @click="search1 = ''">Clear</b-btn>
                         </b-input-group-append>
+
                     </b-input-group>
                 </b-form-group>
             </b-col>
+            <b-col md="4" class="mb-5 mt-5" >
+                <router-link :to="{name:'formulaire'}" @ajout="getData" ><b-btn size="md" variant="danger">Nouveau projet</b-btn></router-link>
+            </b-col>
+
         </b-row>
     <b-table
             responsive
