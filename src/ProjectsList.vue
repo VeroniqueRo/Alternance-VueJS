@@ -1,26 +1,64 @@
 <template>
-    <table class="table table-bordered table-hover">
-        <thead class="thead-light">
-        <tr class="raw">
-            <th class="col-sm-5">Nom  <i @click="sortByProjectName" class='fa fa-sort'></i><b-form-input v-model="search1" placeholder="Rechercher un projet..."/></th>
-            <th class="col-sm-5">Auteur  <i @click="sortByName" class='fa fa-sort'></i><b-form-input v-model="search2" placeholder="Rechercher un auteur..."/></th>
-            <th>Date du projet <i @click="sortByDate" class='fa fa-sort'></i></th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody v-for="monprojet in listFiltered">
-            <tr>
-                <td>{{monprojet.name}}</td>
-                <td>{{monprojet.creator.name}}</td>
-                <td>{{monprojet.createdAt}}</td>
-                <td><router-link :to="{name:'detail', params:{monprojet}}" class="btn btn-md btn-info">Voir détail</router-link></td>
-            </tr>
-        </tbody>
-    </table>
+
+    <!--Table version bootstrap-vue-->
+    <b-container fluid>
+        <b-row>
+            <b-col md="6" class="my-1">
+                <b-form-group horizontal label="Filter" class="mb-0">
+                    <b-input-group>
+                        <b-form-input v-model="search1" placeholder="Rechercher un projet..." />
+                        <b-input-group-append>
+                            <b-btn :disabled="!search1" @click="search1 = ''">Clear</b-btn>
+                        </b-input-group-append>
+                    </b-input-group>
+                </b-form-group>
+            </b-col>
+        </b-row>
+    <b-table
+            responsive
+            bordered hover
+            :items="listFiltered"
+            :fields="fields"
+    >
+        <template slot="index" slot-scope="data">
+            {{data.index + 1}}
+        </template>
+        <template slot="name" slot-scope="row">{{row.item.name}}</template>
+        <template slot="infos" slot-scope="row" md="8">
+            <b-button-group>
+            <router-link :to="{name:'detail', params:{ monprojet: row.item } }"><b-button size="md" class="mr-1">Voir détail</b-button></router-link>
+            <b-button variant="danger" @click="deleteProject"><i class="fas fa-trash-alt"></i></b-button></b-button>
+            </b-button-group>
+        </template>
+    </b-table>
+    </b-container>
+
+    <!--Table version 1-->
+
+    <!--<table class="table table-bordered table-hover">-->
+        <!--<thead class="thead-light">-->
+        <!--<tr class="raw">-->
+            <!--<th class="col-sm-4">Nom  <i @click="sortByProjectName" class='fa fa-sort'></i><b-form-input v-model="search1" placeholder="Rechercher un projet..."/></th>-->
+            <!--<th class="col-sm-3">Auteur  <i @click="sortByName" class='fa fa-sort'></i><b-form-input v-model="search2" placeholder="Rechercher un auteur..."/></th>-->
+            <!--<th class="col-sm-2">Date du projet <i @click="sortByDate" class='fa fa-sort'></i></th>-->
+            <!--<th class="col-sm-3">Actions</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody v-for="monprojet in listFiltered">-->
+            <!--<tr>-->
+                <!--<td>{{monprojet.name}}</td>-->
+                <!--<td>{{monprojet.creator.name}}</td>-->
+                <!--<td>{{monprojet.createdAt}}</td>-->
+                <!--<td><router-link :to="{name:'detail', params:{monprojet}}" class="btn btn-md btn-info">Voir détail</router-link> <b-button @click="deleteProject"><i class="fas fa-trash"></i></b-button> <b-button @click="deleteProject"><i class="fas fa-pencil-alt"></i></b-button></td>-->
+            <!--</tr>-->
+        <!--</tbody>-->
+    <!--</table>-->
 </template>
 <script>
     // Chargement du component
     import axios from 'axios'
+    import VeroTable from "./VeroTable"
+    import Menu from "./Menu";
 
     // Fonction de filtrage sur le nom du projet
     function researchProject(tab, val) {
@@ -96,18 +134,39 @@
         return tab;
     }
 
+
     export default {
         name: "ProjectsList",
         components: {
-            // 'project': Project,
+            VeroTable,
+            Menu
         },
 
         data() {
             return {
                 search1: '',
                 search2: '',
+                fields: [
+                    'index',
+                    {
+                        key: 'name', // Clé correspondant à la colonne de notre tableau de données
+                        label: 'Nom du projet', // Nom que l'on veut donner à l colonne
+                        sortable: true // Intégration auto de la fonction de tri
+                    },
+                    {
+                        key: 'creator.name',
+                        label: 'Auteur',
+                        sortable: true
+                    },
+                    {
+                        key: 'createdAt',
+                        label: 'Date de création',
+                        sortable: true
+                    },
+                    'infos'],
                 allProjects: [],
                 interrupteur: true,
+                filter: null,
                 // allProjects: [
                 //     {
                 //         "_id": "5b3e3da861f2d927949fa8da",
@@ -296,17 +355,26 @@
 
         computed: {
 
-            listFiltered: function () {
-                if (this.search1.toUpperCase()) {
+            // Version avec props
+
+                listFiltered: function () {
                     return researchProject(this.allProjects, this.search1.toUpperCase());
-                } else {
-                    return researchAuthor(this.allProjects, this.search2.toUpperCase());
                 }
-            }
+
+            // Version en local
+
+            // listFiltered: function () {
+            //     if (this.search1.toUpperCase()) {
+            //         return researchProject(this.allProjects, this.search1.toUpperCase());
+            //     } else {
+            //         return researchAuthor(this.allProjects, this.search2.toUpperCase());
+            //     }
+            // }
         },
 
         created() {
 
+            // Appel AXIOS pour récupérer les données de l'API
             console.log("Réponse 1: Je lance ma promesse");
             axios.get(`https://daily-standup-campus.herokuapp.com/api/projects?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMjNmODIzYTM5YjlmMDAxNGViNGJlNiIsImlhdCI6MTUzMTE0Mjg1MX0.K5e_nO1kl0sOOK8rvjYTiRkHPk2vBoGcSGY0Xh3zVQg`)
                 .then(response => {

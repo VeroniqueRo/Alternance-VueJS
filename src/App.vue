@@ -4,7 +4,7 @@
       <img class='image-titre' src="../images/idee_projet.png">
       <h1>Interface de gestion de projets</h1>
     </b-jumbotron>
-      <navbar></navbar>
+      <navbar v-bind:search="search"></navbar>
       <router-view></router-view>
   </b-container>
 </template>
@@ -20,6 +20,10 @@
             'projectslist': ProjectsList,
             'navbar' : Menu
         },
+        data() {
+            search: ''
+        },
+
     }
 
 </script>
